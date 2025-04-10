@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Botão de Acessibilidade</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .accessibility-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #accessibility-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    #accessibility-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #accessibility-options {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      width: 180px;
+    }
+
+    #accessibility-options p {
+      margin: 8px 0;
+      cursor: pointer;
+      color: #333;
+    }
+
+    #accessibility-options p:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilo de alto contraste */
+    .high-contrast {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+
+    .high-contrast a {
+      color: yellow !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bem-vindo ao site acessível!</h1>
+  <p>Este é um exemplo de página com recursos de acessibilidade implementados.</p>
+
+  <div class="accessibility-container">
+    <button id="accessibility-btn" aria-label="Acessibilidade">♿</button>
+    <div id="accessibility-options">
+      <p id="toggle-contrast">Alto contraste</p>
+      <p id="increase-font">Aumentar fonte</p>
+      <p id="decrease-font">Diminuir fonte</p>
+      <p id="screen-reader">Leitor de tela</p>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('accessibility-btn');
+    const options = document.getElementById('accessibility-options');
+
+    // Mostrar as opções ao passar o mouse
+    btn.addEventListener('mouseover', () => {
+      options.style.display = 'block';
+    });
+
+    btn.addEventListener('mouseout', () => {
+      setTimeout(() => {
+        if (!options.matches(':hover')) {
+          options.style.display = 'none';
+        }
+      }, 200);
+    });
+
+    options.addEventListener('mouseleave', () => {
+      options.style.display = 'none';
+    });
+
+    options.addEventListener('mouseenter', () => {
+      options.style.display = 'block';
+    });
+
+    // Funcionalidade: Alto contraste
+    document.getElementById('toggle-contrast').addEventListener('click', () => {
+      document.body.classList.toggle('high-contrast');
+    });
+
+    // Funcionalidade: Aumentar fonte
+    document.getElementById('increase-font').addEventListener('click', () => {
+      const currentSize

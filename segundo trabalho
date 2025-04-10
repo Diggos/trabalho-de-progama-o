@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Botões Interativos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .botao {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #f2f2f2;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .botao.ativo {
+      background-color: #ff7f50; /* Cor nova: Coral */
+      font-weight: bold;
+      color: white;
+      border-color: #ff5722;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Desafio: Botões com Classe Ativa</h2>
+  <button class="botao">Botão 1</button>
+  <button class="botao">Botão 2</button>
+  <button class="botao">Botão 3</button>
+
+  <script>
+    const botoes = document.querySelectorAll('.botao');
+
+    botoes.forEach(botao => {
+      botao.addEventListener('click', () => {
+        botao.classList.toggle('ativo');
+      });
+    });
+  </script>
+
+</body>
+</html>

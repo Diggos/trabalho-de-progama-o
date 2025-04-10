@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contagem Regressiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .contador {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .contador h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .tempo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <div class="contador">
+    <h1>Contagem Regressiva</h1>
+    <div class="tempo" id="tempo-restante">Carregando...</div>
+  </div>
+
+  <script>
+    function calculaTempo(ms) {
+      const segundosTotais = Math.floor(ms / 1000);
+      const dias = Math.floor(segundosTotais / 86400);
+      const horas = Math.floor((segundosTotais % 86400) / 3600);
+      const minutos = Math.floor((segundosTotais % 3600) / 60);
+      const segundos = segundosTotais % 60;
+      return { dias, horas, minutos, segundos };
+    }
+
+    function atualizarContagem(finalTime) {
+      const agora = new Date().getTime();
+      const tempoRestante = finalTime - agora;
+
+      if (tempoRestante < 0) {
+        document.getElementById("tempo-restante").innerText = "Tempo encerrado!";
+        clearInterval(intervalo);
+        return;
+      }
+
+      const { dias, horas, minutos, segundos } = calculaTempo(tempoRestante);
+      document.getElementById("tempo-restante").innerText =
+        dias + "d " + horas + "h " + minutos + "m " + segundos + "s";
+    }
+
+    // Define uma data futura (ex: 2 dias a partir de agora)
+    const tempoFinal = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+
+    const intervalo = setInterval(() => {
+      atualizarContagem(tempoFinal);
+    }, 1000);
+  </script>
+</body>
+</html>
